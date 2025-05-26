@@ -38,7 +38,7 @@ A comprehensive NestJS starter backend featuring authentication, authorization, 
 ### Prerequisites
 
 - Node.js (v16 or higher)
-- PostgresSql database
+- PostgresSQL database
 - OAuth credentials (Google, LinkedIn) - optional
 
 ### Installation
