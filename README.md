@@ -23,7 +23,7 @@ A comprehensive NestJS starter backend featuring authentication, authorization, 
   - Interactive API explorer
 
 - 🗄️ **Database**
-  - TypeORM with MySQL
+  - TypeORM with PostgresSQL
   - Entity relationships
   - Database seeding
 
@@ -38,7 +38,7 @@ A comprehensive NestJS starter backend featuring authentication, authorization, 
 ### Prerequisites
 
 - Node.js (v16 or higher)
-- MySQL database
+- PostgresSql database
 - OAuth credentials (Google, LinkedIn) - optional
 
 ### Installation
@@ -76,7 +76,7 @@ FRONTEND_URL=http://localhost:3000
 ```
 
 3. **Database Setup:**
-Create a MySQL database with the name specified in `DB_NAME`.
+Create a PostgresSQL database with the name specified in `DB_NAME`.
 
 4. **Start the application:**
 ```bash
