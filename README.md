@@ -1,98 +1,218 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# NestJS Starter Backend with OAuth
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A comprehensive NestJS starter backend featuring authentication, authorization, OAuth social login, and role-based access control (RBAC).
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- 🔐 **Authentication & Authorization**
+  - Email/Password authentication
+  - JWT token-based authentication
+  - OAuth social login (Google, LinkedIn)
+  - Role-based access control (RBAC)
+  - Permission-based access control
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- 🛡️ **Security**
+  - CORS configuration
+  - Helmet for security headers
+  - Rate limiting/throttling
+  - Input validation
+  - Password hashing with bcrypt
 
-## Project setup
+- 📚 **API Documentation**
+  - Swagger/OpenAPI documentation
+  - Interactive API explorer
 
+- 🗄️ **Database**
+  - TypeORM with MySQL
+  - Entity relationships
+  - Database seeding
+
+- 🚀 **Development Features**
+  - Hot reload
+  - Environment configuration
+  - Validation pipes
+  - Error handling
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- MySQL database
+- OAuth credentials (Google, LinkedIn) - optional
+
+### Installation
+
+1. **Clone and install dependencies:**
 ```bash
-$ npm install
+npm install
 ```
 
-## Compile and run the project
+2. **Environment Configuration:**
+Copy `.env.example` to `.env` and update the values:
 
-```bash
-# development
-$ npm run start
+```env
+# Database Configuration
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=your_password
+DB_NAME=nestjs_starter
 
-# watch mode
-$ npm run start:dev
+# JWT Configuration
+JWT_SECRET=your-super-secret-jwt-key
+JWT_EXPIRATION=7d
 
-# production mode
-$ npm run start:prod
+# OAuth Configuration (Optional)
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+LINKEDIN_CLIENT_ID=your-linkedin-client-id
+LINKEDIN_CLIENT_SECRET=your-linkedin-client-secret
+
+# App Configuration
+PORT=3000
+NODE_ENV=development
+FRONTEND_URL=http://localhost:3000
 ```
 
-## Run tests
+3. **Database Setup:**
+Create a MySQL database with the name specified in `DB_NAME`.
 
+4. **Start the application:**
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run start:dev
 ```
 
-## Deployment
+The application will be available at:
+- API: http://localhost:3000/api/v1
+- Swagger Documentation: http://localhost:3000/api/docs
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## Default Users
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+The application seeds the following default users:
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+| Email | Password | Role |
+|-------|----------|------|
+| user@example.com | password123 | user |
+| admin@example.com | admin123 | admin |
+| superadmin@example.com | superadmin123 | super-admin |
+
+## API Endpoints
+
+### Authentication
+- `POST /api/v1/auth/register` - Register new user
+- `POST /api/v1/auth/login` - Login user
+- `GET /api/v1/auth/profile` - Get user profile
+- `POST /api/v1/auth/refresh` - Refresh JWT token
+- `GET /api/v1/auth/google` - Google OAuth login
+- `GET /api/v1/auth/linkedin` - LinkedIn OAuth login
+
+### Users
+- `GET /api/v1/users` - Get all users (Admin)
+- `GET /api/v1/users/me` - Get current user profile
+- `GET /api/v1/users/:id` - Get user by ID (Admin)
+- `PATCH /api/v1/users/me` - Update profile
+- `PATCH /api/v1/users/:id` - Update user (Admin)
+- `DELETE /api/v1/users/:id` - Delete user (Super Admin)
+
+### Roles
+- `GET /api/v1/roles` - Get all roles (Admin)
+- `POST /api/v1/roles` - Create role (Admin)
+- `GET /api/v1/roles/:id` - Get role by ID (Admin)
+- `PATCH /api/v1/roles/:id` - Update role (Admin)
+- `DELETE /api/v1/roles/:id` - Delete role (Super Admin)
+
+### Permissions
+- `GET /api/v1/permissions` - Get all permissions (Admin)
+- `POST /api/v1/permissions` - Create permission (Super Admin)
+- `GET /api/v1/permissions/:id` - Get permission by ID (Admin)
+- `PATCH /api/v1/permissions/:id` - Update permission (Super Admin)
+- `DELETE /api/v1/permissions/:id` - Delete permission (Super Admin)
+
+## Authorization
+
+### Roles
+- **user**: Basic user role with limited permissions
+- **admin**: Administrator role with elevated permissions
+- **super-admin**: Full access to all system features
+
+### Guards
+- `JwtAuthGuard`: Protects routes requiring authentication
+- `RolesGuard`: Protects routes based on user roles
+- `PermissionsGuard`: Protects routes based on specific permissions
+
+### Decorators
+- `@Auth(...roles)`: Combines JWT authentication with role-based access
+- `@RequirePermissions(...permissions)`: Requires specific permissions
+- `@GetUser()`: Injects the current user into the route handler
+
+## OAuth Setup
+
+### Google OAuth
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select existing
+3. Enable Google+ API
+4. Create OAuth 2.0 credentials
+5. Add authorized redirect URI: `http://localhost:3000/auth/google/callback`
+
+### LinkedIn OAuth
+1. Go to [LinkedIn Developer Portal](https://developer.linkedin.com/)
+2. Create a new app
+3. Add product: "Sign In with LinkedIn"
+4. Add authorized redirect URI: `http://localhost:3000/auth/linkedin/callback`
+
+## Project Structure
+
+```
+src/
+├── config/           # Configuration files
+├── decorators/       # Custom decorators
+├── dto/             # Data Transfer Objects
+├── entities/        # TypeORM entities
+├── guards/          # Authentication & authorization guards
+├── modules/         # Feature modules
+│   ├── auth/        # Authentication module
+│   ├── user/        # User management module
+│   ├── role/        # Role management module
+│   └── permission/  # Permission management module
+├── seed/            # Database seeding
+└── strategies/      # Passport strategies
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Development
 
-## Resources
+### Running Tests
+```bash
+# Unit tests
+npm run test
 
-Check out a few resources that may come in handy when working with NestJS:
+# E2E tests
+npm run test:e2e
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+# Test coverage
+npm run test:cov
+```
 
-## Support
+### Building for Production
+```bash
+npm run build
+npm run start:prod
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Linting and Formatting
+```bash
+npm run lint
+npm run format
+```
 
-## Stay in touch
+## Contributing
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is licensed under the MIT License.
